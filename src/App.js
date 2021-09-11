@@ -1,4 +1,5 @@
 import React from 'react';
+import { api } from './api';
 import './App.css';
 
 function App() {
@@ -7,8 +8,10 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setItems([...items, value]);
-    setValue('');
+    api.createItem(value).then((persistedItem) => {
+      setItems([...items, value]);
+      setValue('');
+    });
   }
 
   return (
